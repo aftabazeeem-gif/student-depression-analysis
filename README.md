@@ -2,9 +2,9 @@
 
 ## Project Description
 
-This project analyzes a survey dataset about university students in India and depression. The goal is to investigate whether factors such as academic pressure, sleep duration, and dietary habits are connected to depression.
+This project analyzes a survey dataset of university students in India to investigate factors associated with depression. The analysis focuses on understanding how lifestyle and academic variables such as sleep duration, academic pressure, and dietary habits relate to reported depression levels.
 
-The project is built using the Statistics Template JS and integrates a SQLite database with SQL queries, tables, and Google Charts to visualize results.
+The project is built using the **Statistics Template JS**, integrating a **SQLite database**, **SQL queries**, and **Google Charts** to present results through tables and visualizations.
 
 ---
 
@@ -12,21 +12,21 @@ The project is built using the Statistics Template JS and integrates a SQLite da
 
 The dataset contains approximately **27,900 survey responses**.
 
-### Key variables used in the analysis:
+### Key Variables
 
-* Depression
-* Sleep Duration
-* Academic Pressure
-* Dietary Habits
+* **Depression**
+* **Sleep Duration**
+* **Academic Pressure**
+* **Dietary Habits**
 
-### Depression encoding:
+### Depression Encoding
 
-* `0 = Not depressed`
-* `1 = Depressed`
+* `0` = Not depressed
+* `1` = Depressed
 
 ---
 
-## Tools Used
+## Tools & Technologies
 
 * JavaScript
 * SQLite
@@ -39,20 +39,20 @@ The dataset contains approximately **27,900 survey responses**.
 
 ## Analysis Overview
 
-The project explores:
+The project explores the following relationships:
 
 * Distribution of depression among students
 * Relationship between sleep duration and depression
 * Impact of academic pressure on mental health
-* Influence of dietary habits
+* Influence of dietary habits on depression
 
-Results are presented using tables and charts.
+Results are presented using **tables and visual charts**.
 
 ---
 
-## Statistical Summary
+## Key Findings
 
-* A significant portion of students reported depression
+* A significant proportion of students reported depression
 * Higher academic pressure is associated with increased depression
 * Poor sleep patterns correlate with higher depression levels
 * Healthier dietary habits show a slight association with lower depression
@@ -71,34 +71,63 @@ Students experiencing:
 
 are more likely to report depression.
 
-This highlights the importance of **balanced academic workload, proper sleep, and healthy eating habits** in reducing depression risk.
+This highlights the importance of:
+
+* Balanced academic workload
+* Proper sleep habits
+* Healthy nutrition
+
+in reducing the risk of depression among students.
 
 ---
 
 ## How to Run the Project
 
-1. Install dependencies:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/aftabazeem-gif/student-depression-analysis.git
+cd student-depression-analysis
+```
+
+---
+
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-2. Start the server:
+---
+
+### 3. Start the server
 
 ```bash
 npm start
 ```
 
-3. Open in your browser:
+You should see:
 
 ```
-http://localhost:3005
+Listening on http://localhost:3005
 ```
 
 ---
 
-## Author
+### 4. Open in browser
 
-Aftab Azeem
+Go to:
+
+```
+http://localhost:3005/#visa-ett-ar
+```
+
+---
+
+## Notes
+
+* Make sure **Node.js** is installed
+* If the page is blank, refresh the browser or restart the server
+* The database is already included in the repository
 
 ---
