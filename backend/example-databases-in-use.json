@@ -1,12 +1,7 @@
 [
   {
-    "name": "temp-and-rainfall",
+    "name": "default",
     "type": "sqlite",
-    "file": "smhi-temp-and-rainfall-malmo.sqlite3"
-  },
-  {
-    "name": "counties-sqlite",
-    "type": "sqlite",
-    "file": "counties.sqlite3"
+    "file": "students.db"
   }
 ]
