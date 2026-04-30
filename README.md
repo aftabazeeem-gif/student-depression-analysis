@@ -1,7 +1,7 @@
 # Student Depression Analysis
 
 ## Project Description
-This project analyzes a survey dataset of university students in India to investigate factors associated with depression.  
+This project analyzes a survey dataset of university students in India to investigate factors associated with depression.
 
 The goal is to explore how academic and lifestyle variables such as sleep duration, academic pressure, dietary habits, and work/study hours relate to reported depression levels.
 
@@ -99,3 +99,25 @@ The dataset is based on self-reported survey responses, which may introduce bias
 ## How to Run the Project
 
 ### 1. Clone the repository
+git clone https://github.com/aftabazeem-gif/student-depression-analysis.git  
+cd student-depression-analysis  
+
+### 2. Install dependencies
+npm install  
+
+### 3. Start the server
+npm start  
+
+You should see:  
+Listening on http://localhost:3005  
+
+### 4. Open in browser
+http://localhost:3005/#dashboard  
+
+---
+
+## Notes
+- Make sure Node.js is installed  
+- If the page does not load, refresh the browser or restart the server  
+- The SQLite database is included in the repository  
+- The node_modules folder is excluded using .gitignore  
