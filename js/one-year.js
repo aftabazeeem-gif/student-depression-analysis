@@ -1,7 +1,7 @@
 addMdToPage(`
 # Student Depression Analysis
 
-This page analyzes a survey dataset about university students in India and depression.
+This dashboard analyzes a survey dataset about university students in India and depression.
 
 Depression is stored as:
 
@@ -18,12 +18,10 @@ let depressionData = await dbQuery(`
 addMdToPage(`
 ## 1. Depression Distribution
 
-This shows how many students reported depression.
+This section shows how many students in the dataset reported depression.
 `);
 
-tableFromData({
-  data: depressionData
-});
+tableFromData({ data: depressionData });
 
 drawGoogleChart({
   type: 'ColumnChart',
@@ -31,7 +29,9 @@ drawGoogleChart({
   options: {
     height: 400,
     title: 'Depression Distribution',
-    legend: { position: 'none' }
+    legend: { position: 'none' },
+    hAxis: { title: 'Depression Status' },
+    vAxis: { title: 'Number of Students' }
   }
 });
 
@@ -48,12 +48,10 @@ let sleepData = await dbQuery(`
 addMdToPage(`
 ## 2. Sleep Duration and Depression
 
-This section compares sleep duration with average depression value.
+This section compares sleep duration with the average depression value. Lower sleep duration appears to be connected with higher depression levels.
 `);
 
-tableFromData({
-  data: sleepData
-});
+tableFromData({ data: sleepData });
 
 drawGoogleChart({
   type: 'ColumnChart',
@@ -61,7 +59,9 @@ drawGoogleChart({
   options: {
     height: 400,
     title: 'Sleep Duration vs Average Depression',
-    legend: { position: 'none' }
+    legend: { position: 'none' },
+    hAxis: { title: 'Sleep Duration' },
+    vAxis: { title: 'Average Depression' }
   }
 });
 
@@ -79,12 +79,10 @@ let pressureData = await dbQuery(`
 addMdToPage(`
 ## 3. Academic Pressure and Depression
 
-This section shows the relationship between academic pressure and depression.
+This section shows the relationship between academic pressure and depression. The data suggests that higher academic pressure is connected to higher average depression values.
 `);
 
-tableFromData({
-  data: pressureData
-});
+tableFromData({ data: pressureData });
 
 drawGoogleChart({
   type: 'ColumnChart',
@@ -92,7 +90,9 @@ drawGoogleChart({
   options: {
     height: 400,
     title: 'Academic Pressure vs Average Depression',
-    legend: { position: 'none' }
+    legend: { position: 'none' },
+    hAxis: { title: 'Academic Pressure' },
+    vAxis: { title: 'Average Depression' }
   }
 });
 
@@ -109,12 +109,10 @@ let dietData = await dbQuery(`
 addMdToPage(`
 ## 4. Dietary Habits and Depression
 
-This section explores whether dietary habits are connected to depression.
+This section explores whether dietary habits are connected to depression. Students with unhealthy dietary habits show higher average depression values than students with healthier habits.
 `);
 
-tableFromData({
-  data: dietData
-});
+tableFromData({ data: dietData });
 
 drawGoogleChart({
   type: 'ColumnChart',
@@ -122,12 +120,45 @@ drawGoogleChart({
   options: {
     height: 400,
     title: 'Dietary Habits vs Average Depression',
-    legend: { position: 'none' }
+    legend: { position: 'none' },
+    hAxis: { title: 'Dietary Habits' },
+    vAxis: { title: 'Average Depression' }
   }
 });
 
 
-// Statistical summary without external statistics library
+let hoursData = await dbQuery(`
+  SELECT 
+    "Work/Study Hours" AS hours,
+    COUNT(*) AS students,
+    AVG(Depression) AS avgDepression
+  FROM "students.csv"
+  GROUP BY "Work/Study Hours"
+  ORDER BY "Work/Study Hours"
+`);
+
+addMdToPage(`
+## 5. Work/Study Hours and Depression
+
+This section compares daily work/study hours with average depression levels. Longer work or study hours may increase stress and reduce recovery time.
+`);
+
+tableFromData({ data: hoursData });
+
+drawGoogleChart({
+  type: 'ColumnChart',
+  data: makeChartFriendly(hoursData, 'hours', 'avgDepression'),
+  options: {
+    height: 400,
+    title: 'Work/Study Hours vs Average Depression',
+    legend: { position: 'none' },
+    hAxis: { title: 'Work/Study Hours' },
+    vAxis: { title: 'Average Depression' }
+  }
+});
+
+
+// Statistical summary for academic pressure
 let pressureValues = pressureData.map(row => Number(row.avgDepression));
 
 let mean = pressureValues.reduce((a, b) => a + b, 0) / pressureValues.length;
@@ -145,7 +176,7 @@ let variance = pressureValues.reduce((sum, value) => {
 let standardDeviation = Math.sqrt(variance);
 
 addMdToPage(`
-## 5. Statistical Summary
+## 6. Statistical Summary
 
 For academic pressure, the average depression values were analyzed using statistical measures:
 
@@ -155,9 +186,13 @@ For academic pressure, the average depression values were analyzed using statist
 
 ## Conclusion
 
-The analysis shows that depression is common among students in this dataset.
+The dataset shows that depression is common among surveyed university students in India.
 
-The clearest relationship appears between academic pressure and depression. As academic pressure increases, the average depression value also increases.
+The clearest pattern appears in academic pressure, where higher pressure levels consistently correspond to higher average depression values. This suggests that academic workload may be one of the strongest factors connected to depression.
 
-Sleep duration and dietary habits also appear to be connected to depression, but academic pressure seems to be the strongest factor in this analysis.
+Sleep duration and dietary habits also show visible differences. Students with less healthy routines appear to have higher depression values.
+
+Work/study hours add another important angle, because long daily study or work time may increase stress and reduce recovery time.
+
+Overall, the analysis suggests that student depression is not linked to one single factor, but to a combination of academic pressure, lifestyle, and workload.
 `);
